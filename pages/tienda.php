@@ -1,0 +1,664 @@
+<?php
+session_start();
+$rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener el rol del usuario desde la sesión
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tienda</title>
+    <!-- link de estilos-->
+    <link rel="stylesheet" href="../assets/styles/main.css">
+    <!-- link de iconos-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="../assets/js/Static_Header_Footer.js"></script>
+    <link rel="stylesheet" href="../assets/styles/_footer.css">
+    <style>
+        .price {
+            color: #fefefe;
+
+        }
+
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .cart {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .cart.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .cart-header .close-cart {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart li .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cart li .controls button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .cart-summary {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        #checkout {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Estilos para el formulario de administración de productos */
+        .product-admin {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .product-admin h2 {
+            margin-bottom: 20px;
+        }
+
+        .product-admin .form-group {
+            margin-bottom: 10px;
+        }
+
+        .product-admin .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .product-admin .form-group input,
+        .product-admin .form-group textarea,
+        .product-admin .form-group button {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .product-admin .form-group button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .products-container .box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .products-container .box img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .products-container .box h3 {
+            margin: 10px 0;
+        }
+
+        .products-container .box .content span {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: white !important;
+        }
+
+        .products-container .box .content button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 1px;
+            cursor: pointer;
+        }
+
+        /* Estilos para el formulario modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Tu código del header -->
+    </header>
+
+    <main>
+        <!-- Filtros -->
+        <section class="filters">
+            <div class="filter-group">
+                <label for="categories">Filtrado por:</label>
+                <select id="categories" onchange="filterByCategory()">
+                    <option value="">Categorías</option>
+                    <option value="Café">Café</option>
+                    <option value="Repostería">Repostería</option>
+                    <option value="Tetería">Tetería</option>
+                    <option value="Dulces">Dulces</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="price-range">Filtrar por precio:</label>
+                <input type="range" id="price-range" name="price-range" min="0" max="10000" value="5000" oninput="filterByPrice(this.value)">
+                <span>$0 — $10000</span>
+            </div>
+            <div class="filter-group">
+                <label for="sort">Ordenar por:</label>
+                <select id="sort">
+                    <option value="latest">El Último</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort">Elementos a mostrar:</label>
+                <select id="sort">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="all">Todo</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <!-- Secciones de productos por categoría -->
+            <div class="products-container" id="Café">
+                <h2>Café</h2>
+                <!-- Productos de Café -->
+            </div>
+            <div class="products-container" id="Repostería">
+                <h2>Repostería</h2>
+                <!-- Productos de Repostería -->
+            </div>
+            <div class="products-container" id="Tetería">
+                <h2>Tetería</h2>
+                <!-- Productos de Tetería -->
+            </div>
+            <div class="products-container" id="Dulces">
+                <h2>Dulces</h2>
+                <!-- Productos de Dulces -->
+            </div>
+        </section>
+
+        <!-- Icono del carrito -->
+        <div class="cart-icon">
+            <i class="bx bx-cart"></i>
+        </div>
+
+        <!-- Carrito -->
+        <div id="cart" class="cart">
+            <div class="cart-header">
+                <h2>Carrito de Compras</h2>
+                <span class="close-cart" id="close-cart">x</span>
+            </div>
+            <ul id="cart-items"></ul>
+            <div class="cart-summary">
+                <p>Total: $<span id="cart-total">0</span></p>
+                <button id="checkout">Checkout</button>
+            </div>
+        </div>
+
+        <!-- Formulario de administración de productos -->
+        <section class="product-admin" style="display: none;">
+            <h2>Agregar Nuevo Producto</h2>
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="product-name">Nombre del Producto</label>
+                    <input type="text" id="product-name" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Precio del Producto</label>
+                    <input type="number" id="product-price" name="precio" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Categoría</label>
+                    <input type="text" id="product-category" name="categoria" required>
+                </div>
+                <div class="form-group">
+                    <label for="purchase-date">Fecha de Compra</label>
+                    <input type="date" id="purchase-date" name="fecha_compra" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiration-date">Fecha de Expiración</label>
+                    <input type="date" id="expiration-date" name="fecha_expiracion" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-stock">Stock</label>
+                    <input type="number" id="product-stock" name="stock" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">URL de la Imagen del Producto</label>
+                    <input type="url" id="product-image" name="imagen">
+                </div>
+                <div class="form-group">
+                    <label for="product-provider">Proveedor</label>
+                    <input type="text" id="product-provider" name="proveedor" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-origin">País de Origen</label>
+                    <input type="text" id="product-origin" name="pais_origen" required>
+                </div>
+                <div class="form-group">
+                    <label for="lactosa">Lactosa</label>
+                    <input type="checkbox" id="lactosa" name="lactosa">
+                </div>
+                <div class="form-group">
+                    <label for="gluten">Gluten</label>
+                    <input type="checkbox" id="gluten" name="gluten">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descripción del Producto</label>
+                    <textarea id="product-description" name="descripcion_producto"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contador">Contador</label>
+                    <input type="number" id="contador" name="contador" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentarios</label>
+                    <textarea id="comentarios" name="comentarios"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Agregar Producto</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Modal para editar productos -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Editar Producto</h2>
+                <form id="edit-form">
+                    <input type="hidden" id="edit-id" name="id">
+                    <div class="form-group">
+                        <label for="edit-name">Nombre del Producto</label>
+                        <input type="text" id="edit-name" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-price">Precio del Producto</label>
+                        <input type="number" id="edit-price" name="precio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-category">Categoría</label>
+                        <input type="text" id="edit-category" name="categoria" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-purchase-date">Fecha de Compra</label>
+                        <input type="date" id="edit-purchase-date" name="fecha_compra" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-expiration-date">Fecha de Expiración</label>
+                        <input type="date" id="edit-expiration-date" name="fecha_expiracion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-stock">Stock</label>
+                        <input type="number" id="edit-stock" name="stock" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-image">URL de la Imagen del Producto</label>
+                        <input type="url" id="edit-image" name="imagen">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-provider">Proveedor</label>
+                        <input type="text" id="edit-provider" name="proveedor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-origin">País de Origen</label>
+                        <input type="text" id="edit-origin" name="pais_origen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-lactosa">Lactosa</label>
+                        <input type="checkbox" id="edit-lactosa" name="lactosa">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-gluten">Gluten</label>
+                        <input type="checkbox" id="edit-gluten" name="gluten">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">Descripción del Producto</label>
+                        <textarea id="edit-description" name="descripcion_producto"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-contador">Contador</label>
+                        <input type="number" id="edit-contador" name="contador">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-comentarios">Comentarios</label>
+                        <textarea id="edit-comentarios" name="comentarios"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Actualizar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"></footer>
+
+    <script src="../assets/js/carrito.js"></script>
+    <script>
+        document.getElementById('product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const image = formData.get('imagen');
+            if (!image) {
+                formData.set('imagen', 'https://pub-bde9ff3e851b4092bfe7076570692078.r2.dev/firma_null.webp');
+            }
+
+            fetch('../pages/backend/tienda/add_product.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Producto agregado exitosamente');
+                        // Añadir el nuevo producto a la lista de productos sin recargar la página
+                        const categoryContainer = document.getElementById(formData.get('categoria'));
+                        const newProduct = document.createElement('div');
+                        newProduct.classList.add('box');
+                        newProduct.innerHTML = `
+                        <img src="${formData.get('imagen')}" alt="${formData.get('nombre')}">
+                        <h3>${formData.get('nombre')} <small>ID: ${data.id}</small></h3>
+                        <div class="content">
+                            <span>$${formData.get('precio')}</span>
+                            <button class="add-to-cart" data-name="${formData.get('nombre')}" data-price="${formData.get('precio')}">Agregar al carro</button>
+                            <button class="edit-product" data-id="${data.id}">Editar</button>
+                        </div>
+                    `;
+                        categoryContainer.appendChild(newProduct);
+                    } else {
+                        alert('Error al agregar el producto: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulación de carga de productos desde la base de datos
+            fetch('../pages/backend/tienda/fetch_products.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        data.products.forEach(product => {
+                            const categoryContainer = document.getElementById(product.Categoria);
+                            if (categoryContainer) {
+                                const productBox = document.createElement('div');
+                                productBox.classList.add('box');
+                                productBox.innerHTML = `
+                        <img src="${product.Imagen}" alt="${product.Nombre}">
+                        <h3>${product.Nombre} <small>ID: ${product.ID_Productos}</small></h3>
+                        <div class="content">
+                            <span class="price">$${product.Precio}</span>
+                            <button class="add-to-cart" data-name="${product.Nombre}" data-price="${product.Precio}">Agregar al carro</button>
+                            ${userRoleId === 3 || userRole === "Mantenedor" ? `
+                            <button class="edit-product" data-id="${product.ID_Productos}">Editar</button>
+                            <button class="delete-product" data-id="${product.ID_Productos}">Eliminar</button>` : ''}
+                        </div>
+                    `;
+                                categoryContainer.appendChild(productBox);
+                            } else {
+                                console.error(`No se encontró el contenedor para la categoría: ${product.Categoria}`);
+                            }
+                        });
+
+                        // Añadir eventos a los botones de editar
+                        document.querySelectorAll('.edit-product').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const productId = this.dataset.id;
+                                fetch(`../pages/backend/tienda/get_product.php?id=${productId}`)
+                                    .then(response => response.json())
+                                    .then(productData => {
+                                        if (productData.status === 'success') {
+                                            const product = productData.product;
+                                            document.getElementById('edit-id').value = product.ID_Productos;
+                                            document.getElementById('edit-name').value = product.Nombre;
+                                            document.getElementById('edit-price').value = product.Precio;
+                                            document.getElementById('edit-category').value = product.Categoria;
+                                            document.getElementById('edit-purchase-date').value = product.Fecha_de_compra;
+                                            document.getElementById('edit-expiration-date').value = product.Fecha_de_EX;
+                                            document.getElementById('edit-stock').value = product.Stock;
+                                            document.getElementById('edit-image').value = product.Imagen;
+                                            document.getElementById('edit-provider').value = product.Proveedor;
+                                            document.getElementById('edit-origin').value = product.Pais_origen;
+                                            document.getElementById('edit-lactosa').checked = product.Lactosa;
+                                            document.getElementById('edit-gluten').checked = product.Gluten;
+                                            document.getElementById('edit-description').value = product.Descripcion_Producto;
+                                            document.getElementById('edit-contador').value = product.Contador;
+                                            document.getElementById('edit-comentarios').value = product.Comentarios;
+
+                                            // Mostrar el modal
+                                            document.getElementById('editModal').style.display = "block";
+                                        } else {
+                                            alert('Error al cargar los datos del producto: ' + productData.message);
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
+                        });
+
+                        // Añadir eventos a los botones de eliminar
+                        document.querySelectorAll('.delete-product').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const productId = this.dataset.id;
+                                if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                                    fetch(`../pages/backend/tienda/delete_product.php`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/x-www-form-urlencoded'
+                                            },
+                                            body: `id=${productId}`
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.status === 'success') {
+                                                alert('Producto eliminado exitosamente');
+                                                location.reload(); // Recargar la página para mostrar los cambios
+                                            } else {
+                                                alert('Error al eliminar el producto: ' + data.message);
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('Error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.');
+                                        });
+                                }
+                            });
+                        });
+
+
+                    } else {
+                        console.error('Error fetching products:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+
+        // Funcionalidad para cerrar el modal
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('editModal').style.display = "none";
+        });
+
+        // Funcionalidad para actualizar el producto
+        document.getElementById('edit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('../pages/backend/tienda/update_product.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Producto actualizado exitosamente');
+                        document.getElementById('editModal').style.display = "none";
+                        location.reload(); // Recargar la página para mostrar los cambios
+                    } else {
+                        alert('Error al actualizar el producto: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.');
+                });
+        });
+
+        function filterByCategory() {
+            const category = document.getElementById('categories').value;
+            const sections = document.querySelectorAll('.products-container');
+            sections.forEach(section => {
+                if (section.id === category || category === "") {
+                    section.style.display = 'flex'; // Cambia a 'flex' para mantener el diseño en cuadrícula
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            // Si se seleccionó una categoría específica, desplazarla a la primera posición
+            if (category !== "") {
+                const selectedSection = document.getElementById(category);
+                selectedSection.parentNode.insertBefore(selectedSection, selectedSection.parentNode.firstChild);
+            }
+        }
+
+        function filterByPrice(maxPrice) {
+            const sections = document.querySelectorAll('.products-container');
+            sections.forEach(section => {
+                const products = section.querySelectorAll('.box');
+                products.forEach(product => {
+                    const price = parseFloat(product.querySelector('.content span').textContent.replace('$', ''));
+                    if (price <= maxPrice) {
+                        product.style.display = 'block'; // Asegúrate de que se mantenga el diseño de bloque
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        let userRoleId = 0; // Variable para almacenar el rol del usuario
+        let userRole = ""; // Variable para almacenar el nombre del rol del usuario
+
+        // Fetch para obtener los datos del usuario actual
+        fetch('../pages/backend/tienda/fetch_users.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Manejar los datos del usuario actual
+                    const usuario = data.user;
+                    console.log(usuario); // Mostrar los datos en la consola
+
+                    userRoleId = usuario.Rol_ID;
+                    userRole = usuario.Rol;
+
+                    // Verificar si el usuario tiene rol_id 3 o es "Mantenedor"
+                    if (userRoleId === 3 || userRole === "Mantenedor") {
+                        document.querySelector('.product-admin').style.display = 'block';
+                    }
+                } else {
+                    console.error('Error fetching user:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+
+</html>
