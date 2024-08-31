@@ -14,7 +14,11 @@ if ($conn->connect_error) {
     die(json_encode(array("status" => "error", "message" => "Conexión fallida: " . $conn->connect_error)));
 }
 
-$sql = "SELECT ID_Productos, Nombre, Precio,Categoria, Imagen FROM productos";
+$sql = "SELECT p.ID_Productos, p.Nombre, p.Precio, p.Categoria, p.Imagen, 
+               IFNULL(AVG(v.Calificacion), 0) as PromedioValoracion 
+        FROM productos p 
+        LEFT JOIN valoraciones v ON p.ID_Productos = v.ID_Producto 
+        GROUP BY p.ID_Productos";
 $result = $conn->query($sql);
 
 $products = array();

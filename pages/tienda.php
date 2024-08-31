@@ -19,7 +19,6 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
     <style>
         .price {
             color: #fefefe;
-
         }
 
         .cart-icon {
@@ -421,54 +420,61 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                 </form>
             </div>
         </div>
+
+        <!-- Modal para valorar productos -->
+        <div id="rateModal" class="modal">
+            <div class="modal-content">
+                <span class="close-rate">&times;</span>
+                <h2>Valorar Producto</h2>
+                <form id="rate-form">
+                    <input type="hidden" id="rate-product-id" name="id">
+                    <div class="form-group">
+                        <label for="rating">Calificación</label>
+                        <select id="rating" name="rating" required>
+                            <option value="1">1 Estrella</option>
+                            <option value="2">2 Estrellas</option>
+                            <option value="3">3 Estrellas</option>
+                            <option value="4">4 Estrellas</option>
+                            <option value="5">5 Estrellas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Enviar Valoración</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer class="footer"></footer>
 
     <script src="../assets/js/carrito.js"></script>
     <script>
-        document.getElementById('product-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        let userRoleId = 0; // Inicialmente define userRoleId
+        let userRole = ""; // Inicialmente define userRole
 
-            const formData = new FormData(this);
-            const image = formData.get('imagen');
-            if (!image) {
-                formData.set('imagen', 'https://pub-bde9ff3e851b4092bfe7076570692078.r2.dev/firma_null.webp');
-            }
+        // Fetch para obtener los datos del usuario actual
+        fetch('../pages/backend/tienda/fetch_users.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Manejar los datos del usuario actual
+                    const usuario = data.user;
 
-            fetch('../pages/backend/tienda/add_product.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert('Producto agregado exitosamente');
-                        // Añadir el nuevo producto a la lista de productos sin recargar la página
-                        const categoryContainer = document.getElementById(formData.get('categoria'));
-                        const newProduct = document.createElement('div');
-                        newProduct.classList.add('box');
-                        newProduct.innerHTML = `
-                        <img src="${formData.get('imagen')}" alt="${formData.get('nombre')}">
-                        <h3>${formData.get('nombre')} <small>ID: ${data.id}</small></h3>
-                        <div class="content">
-                            <span>$${formData.get('precio')}</span>
-                            <button class="add-to-cart" data-name="${formData.get('nombre')}" data-price="${formData.get('precio')}">Agregar al carro</button>
-                            <button class="edit-product" data-id="${data.id}">Editar</button>
-                        </div>
-                    `;
-                        categoryContainer.appendChild(newProduct);
-                    } else {
-                        alert('Error al agregar el producto: ' + data.message);
+                    userRoleId = usuario.Rol_ID;
+                    userRole = usuario.Rol;
+
+                    // Verificar si el usuario tiene rol_id 3 o es "Mantenedor"
+                    if (userRoleId === 3 || userRole === "Mantenedor") {
+                        document.querySelector('.product-admin').style.display = 'block';
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+                } else {
+                    console.error('Error fetching user:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Simulación de carga de productos desde la base de datos
             fetch('../pages/backend/tienda/fetch_products.php')
                 .then(response => response.json())
                 .then(data => {
@@ -479,20 +485,29 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                                 const productBox = document.createElement('div');
                                 productBox.classList.add('box');
                                 productBox.innerHTML = `
-                        <img src="${product.Imagen}" alt="${product.Nombre}">
-                        <h3>${product.Nombre} <small>ID: ${product.ID_Productos}</small></h3>
-                        <div class="content">
-                            <span class="price">$${product.Precio}</span>
-                            <button class="add-to-cart" data-name="${product.Nombre}" data-price="${product.Precio}">Agregar al carro</button>
-                            ${userRoleId === 3 || userRole === "Mantenedor" ? `
-                            <button class="edit-product" data-id="${product.ID_Productos}">Editar</button>
-                            <button class="delete-product" data-id="${product.ID_Productos}">Eliminar</button>` : ''}
-                        </div>
-                    `;
+                                <img src="${product.Imagen}" alt="${product.Nombre}">
+                                <h3>${product.Nombre} <small>ID: ${product.ID_Productos}</small></h3>
+                                <div class="content">
+                                    <span class="price">$${product.Precio}</span>
+                                    <span class="rating">Promedio: ${parseFloat(product.PromedioValoracion).toFixed(2)} estrellas</span>
+                                    <button class="add-to-cart" data-name="${product.Nombre}" data-price="${product.Precio}">Agregar al carro</button>
+                                    <button class="rate-product" data-id="${product.ID_Productos}">Valorar</button>
+                                    ${(userRoleId === 3 || userRole === "Mantenedor") ? `
+                                    <button class="edit-product" data-id="${product.ID_Productos}">Editar</button>
+                                    <button class="delete-product" data-id="${product.ID_Productos}">Eliminar</button>` : ''}
+                                </div>
+                            `;
                                 categoryContainer.appendChild(productBox);
                             } else {
                                 console.error(`No se encontró el contenedor para la categoría: ${product.Categoria}`);
                             }
+                        });
+
+                        document.querySelectorAll('.rate-product').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const productId = this.dataset.id;
+                                openRateModal(productId);
+                            });
                         });
 
                         // Añadir eventos a los botones de editar
@@ -520,7 +535,6 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                                             document.getElementById('edit-contador').value = product.Contador;
                                             document.getElementById('edit-comentarios').value = product.Comentarios;
 
-                                            // Mostrar el modal
                                             document.getElementById('editModal').style.display = "block";
                                         } else {
                                             alert('Error al cargar los datos del producto: ' + productData.message);
@@ -561,7 +575,6 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                             });
                         });
 
-
                     } else {
                         console.error('Error fetching products:', data.message);
                     }
@@ -569,30 +582,33 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                 .catch(error => console.error('Error:', error));
         });
 
+        function openRateModal(productId) {
+            const rateModal = document.getElementById('rateModal');
+            document.getElementById('rate-product-id').value = productId;
+            rateModal.style.display = "block";
+        }
 
-        // Funcionalidad para cerrar el modal
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('editModal').style.display = "none";
+        document.querySelector('.close-rate').addEventListener('click', function() {
+            document.getElementById('rateModal').style.display = "none";
         });
 
-        // Funcionalidad para actualizar el producto
-        document.getElementById('edit-form').addEventListener('submit', function(e) {
+        document.getElementById('rate-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const formData = new FormData(this);
 
-            fetch('../pages/backend/tienda/update_product.php', {
+            fetch('../pages/backend/tienda/rate_product.php', {
                     method: 'POST',
                     body: formData
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        alert('Producto actualizado exitosamente');
-                        document.getElementById('editModal').style.display = "none";
-                        location.reload(); // Recargar la página para mostrar los cambios
+                        alert('Valoración enviada exitosamente');
+                        document.getElementById('rateModal').style.display = "none";
+                        location.reload(); // Recargar para actualizar el promedio de valoraciones
                     } else {
-                        alert('Error al actualizar el producto: ' + data.message);
+                        alert('Error al enviar la valoración: ' + data.message);
                     }
                 })
                 .catch(error => {
@@ -606,13 +622,12 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             const sections = document.querySelectorAll('.products-container');
             sections.forEach(section => {
                 if (section.id === category || category === "") {
-                    section.style.display = 'flex'; // Cambia a 'flex' para mantener el diseño en cuadrícula
+                    section.style.display = 'flex';
                 } else {
                     section.style.display = 'none';
                 }
             });
 
-            // Si se seleccionó una categoría específica, desplazarla a la primera posición
             if (category !== "") {
                 const selectedSection = document.getElementById(category);
                 selectedSection.parentNode.insertBefore(selectedSection, selectedSection.parentNode.firstChild);
@@ -626,39 +641,15 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                 products.forEach(product => {
                     const price = parseFloat(product.querySelector('.content span').textContent.replace('$', ''));
                     if (price <= maxPrice) {
-                        product.style.display = 'block'; // Asegúrate de que se mantenga el diseño de bloque
+                        product.style.display = 'block';
                     } else {
                         product.style.display = 'none';
                     }
                 });
             });
         }
-
-        let userRoleId = 0; // Variable para almacenar el rol del usuario
-        let userRole = ""; // Variable para almacenar el nombre del rol del usuario
-
-        // Fetch para obtener los datos del usuario actual
-        fetch('../pages/backend/tienda/fetch_users.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // Manejar los datos del usuario actual
-                    const usuario = data.user;
-                    console.log(usuario); // Mostrar los datos en la consola
-
-                    userRoleId = usuario.Rol_ID;
-                    userRole = usuario.Rol;
-
-                    // Verificar si el usuario tiene rol_id 3 o es "Mantenedor"
-                    if (userRoleId === 3 || userRole === "Mantenedor") {
-                        document.querySelector('.product-admin').style.display = 'block';
-                    }
-                } else {
-                    console.error('Error fetching user:', data.message);
-                }
-            })
-            .catch(error => console.error('Error:', error));
     </script>
+
 </body>
 
 </html>
