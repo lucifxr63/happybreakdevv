@@ -1,7 +1,3 @@
-<?php
-session_start();
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,14 +75,60 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom Script -->
     <script>
+        let userRoleId = 0; // Inicialmente define userRoleId
+        let userRole = ""; // Inicialmente define userRole
+
+        // Fetch para obtener los datos del usuario actual
+        fetch('../pages/backend/Opiniones/Fetch_user.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    userRoleId = data.user.Rol_ID;
+                    userRole = data.user.Rol;
+
+                    // Mostrar botones de eliminar solo si el usuario es Mantenedor
+                    if (userRoleId === 3 || userRole === "Mantenedor") {
+                        document.querySelectorAll('.btn-delete-opinion').forEach(btn => btn.style.display = 'inline-block');
+                    }
+                } else {
+                    console.error('Error fetching user:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
         $(document).ready(function() {
             // Función para cargar opiniones desde el backend
             function loadOpinions() {
                 $.ajax({
-                    url: 'backend/Opiniones/OpinionFetch.php',
+                    url: '../pages/backend/Opiniones/OpinionFetch.php',
                     type: 'GET',
                     success: function(data) {
-                        $("#opinionesContainer").html(data); // Cargar opiniones en el contenedor
+                        let opinionsContainer = $("#opinionesContainer");
+                        opinionsContainer.html(data); // Cargar opiniones en el contenedor
+
+                        // Agregar botones de eliminación en el frontend
+                        $('.opinion-box').each(function() {
+                            let opinionId = $(this).data('id');
+                            let deleteBtn = $('<button>')
+                                .addClass('btn-delete-opinion')
+                                .css({
+                                    'position': 'absolute',
+                                    'top': '10px',
+                                    'right': '10px',
+                                    'display': 'none' // Ocultar por defecto
+                                })
+                                .text('X')
+                                .click(function() {
+                                    deleteOpinion(opinionId);
+                                });
+
+                            $(this).append(deleteBtn);
+                        });
+
+                        // Mostrar los botones de eliminar solo si el usuario es Mantenedor
+                        if (userRoleId === 3 || userRole === "Mantenedor") {
+                            $('.btn-delete-opinion').show();
+                        }
                     },
                     error: function(error) {
                         console.error('Error al cargar las opiniones:', error);
@@ -103,7 +145,7 @@ session_start();
                 e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
                 $.ajax({
-                    url: 'backend/Opiniones/OpinionADD.php',
+                    url: '../pages/backend/Opiniones/OpinionADD.php',
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
@@ -132,6 +174,29 @@ session_start();
                 });
             });
         });
+
+        // Función para eliminar una opinión
+        function deleteOpinion(opinionId) {
+            if (confirm("¿Estás seguro de que quieres eliminar esta opinión?")) {
+                $.ajax({
+                    url: '../pages/backend/Opiniones/OpinionDelete.php',
+                    type: 'POST',
+                    data: {id: opinionId},
+                    success: function(response) {
+                        if(response.trim() === "success"){
+                            alert('Opinión eliminada exitosamente.');
+                            loadOpinions(); // Recargar opiniones
+                        } else {
+                            alert('Error al eliminar la opinión.');
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                        alert('Hubo un problema al eliminar la opinión.');
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
