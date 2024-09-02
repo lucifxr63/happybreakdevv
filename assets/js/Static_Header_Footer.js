@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (header) {
-    fetch("http://localhost/kms/happybreakdevv/pages/header.php")
+    fetch("../pages/header.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (footer) {
-    fetch("http://localhost/kms/happybreakdevv/pages/footer.php")
+    fetch("../pages/footer.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

@@ -15,9 +15,12 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT p.ID_Productos, p.Nombre, p.Precio, p.Categoria, p.Imagen, 
-               IFNULL(AVG(v.Calificacion), 0) as PromedioValoracion 
+               IFNULL(AVG(v.Calificacion), 0) as PromedioValoracion,
+               IFNULL(o.Precio, p.Precio) AS PrecioOferta,
+               (o.ID_Oferta IS NOT NULL) AS EnOferta
         FROM productos p 
         LEFT JOIN valoraciones v ON p.ID_Productos = v.ID_Producto 
+        LEFT JOIN ofertas o ON p.ID_Productos = o.Productos
         GROUP BY p.ID_Productos";
 $result = $conn->query($sql);
 
