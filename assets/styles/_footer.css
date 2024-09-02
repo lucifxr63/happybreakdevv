@@ -1,85 +1,85 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .footer-container {
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    flex-wrap: wrap;
-    margin-top: 400px;
-
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+  margin-top: 400px;
 }
 
 .footer-section {
-    flex: 1;
-    margin: 10px;
-    min-width: 200px;
+  flex: 1;
+  margin: 10px;
+  min-width: 200px;
 }
 
 .logo-section h2 {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .logo-section h2 span {
-    color: #8B4513; /* Color café para el logotipo */
+  color: #8b4513; /* Color café para el logotipo */
 }
 
 .footer-section ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .footer-section ul li {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
 }
 
 .footer-section ul li i {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .footer-section ul li a:hover {
-    color: #8B4513; /* Color café al pasar el cursor */
+  color: #8b4513; /* Color café al pasar el cursor */
 }
 
 .footer-section p {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .social-media a {
-    color: #fff;
-    margin-right: 10px;
-    text-decoration: none;
+  color: #fff;
+  margin-right: 10px;
+  text-decoration: none;
 }
 
 .social-media a:hover {
-    color: #8B4513; /* Color café al pasar el cursor */
+  color: #8b4513; /* Color café al pasar el cursor */
 }
-.profile{
-    margin-top: 100px;
+.profile {
+  margin-top: 100px;
 }
-.info{
-    margin-top: 50px;
+.info {
+  margin-top: 50px;
 }

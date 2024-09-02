@@ -25,8 +25,10 @@ session_start();
         <div class="about-img">
             <img src="../assets/images/about.jpg" alt="">
         </div>
+        <div class ="about-text-header">
+            <h1>Nosotros!</h1>
+        </div>
         <div class="about-text">
-            <h2>Nosotros!</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>

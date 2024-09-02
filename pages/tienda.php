@@ -84,6 +84,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             border: none;
             padding: 5px;
             cursor: pointer;
+          
         }
 
         .cart-summary {
@@ -139,15 +140,22 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
 
         .products-container .box {
             border: 1px solid #ddd;
+            transition: box-shadow .3s;
             padding: 10px;
             margin: 10px;
             text-align: center;
         }
 
+        .box:hover {
+  box-shadow: 0 0 112px rgba(33,33,33,.2); 
+}
+
         .products-container .box img {
             max-width: 100%;
             height: auto;
-        }
+           
+            border-radius: 25px;
+                  }
 
         .products-container .box h3 {
             margin: 10px 0;
@@ -166,6 +174,8 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             border: none;
             padding: 5px 1px;
             cursor: pointer;
+            border-radius: 5px ;
+            margin-bottom: 2%;;
         }
 
         /* Estilos para el formulario modal */
