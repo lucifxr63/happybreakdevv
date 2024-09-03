@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="../assets/styles/_footer.css">
     <script src="../assets/js/Static_Header_Footer.js"></script>
 </head>
+
 <body>
     <header>
         <!-- Tu header aquí -->
@@ -96,46 +98,48 @@
             })
             .catch(error => console.error('Error:', error));
 
+
+        function loadOpinions() {
+            $.ajax({
+                url: '../pages/backend/Opiniones/OpinionFetch.php',
+                type: 'GET',
+                success: function(data) {
+                    let opinionsContainer = $("#opinionesContainer");
+                    opinionsContainer.html(data); // Cargar opiniones en el contenedor
+
+                    // Agregar botones de eliminación en el frontend
+                    $('.opinion-box').each(function() {
+                        let opinionId = $(this).data('id');
+                        let deleteBtn = $('<button>')
+                            .addClass('btn-delete-opinion')
+                            .css({
+                                'position': 'absolute',
+                                'top': '10px',
+                                'right': '10px',
+                                'display': 'none' // Ocultar por defecto
+                            })
+                            .text('X')
+                            .click(function() {
+                                deleteOpinion(opinionId);
+                            });
+
+                        $(this).append(deleteBtn);
+                    });
+
+                    // Mostrar los botones de eliminar solo si el usuario es Mantenedor
+                    if (userRoleId === 3 || userRole === "Mantenedor") {
+                        $('.btn-delete-opinion').show();
+                    }
+                },
+                error: function(error) {
+                    console.error('Error al cargar las opiniones:', error);
+                    $("#opinionesContainer").html("<p>Error al cargar las opiniones.</p>");
+                }
+            });
+        }
         $(document).ready(function() {
             // Función para cargar opiniones desde el backend
-            function loadOpinions() {
-                $.ajax({
-                    url: '../pages/backend/Opiniones/OpinionFetch.php',
-                    type: 'GET',
-                    success: function(data) {
-                        let opinionsContainer = $("#opinionesContainer");
-                        opinionsContainer.html(data); // Cargar opiniones en el contenedor
 
-                        // Agregar botones de eliminación en el frontend
-                        $('.opinion-box').each(function() {
-                            let opinionId = $(this).data('id');
-                            let deleteBtn = $('<button>')
-                                .addClass('btn-delete-opinion')
-                                .css({
-                                    'position': 'absolute',
-                                    'top': '10px',
-                                    'right': '10px',
-                                    'display': 'none' // Ocultar por defecto
-                                })
-                                .text('X')
-                                .click(function() {
-                                    deleteOpinion(opinionId);
-                                });
-
-                            $(this).append(deleteBtn);
-                        });
-
-                        // Mostrar los botones de eliminar solo si el usuario es Mantenedor
-                        if (userRoleId === 3 || userRole === "Mantenedor") {
-                            $('.btn-delete-opinion').show();
-                        }
-                    },
-                    error: function(error) {
-                        console.error('Error al cargar las opiniones:', error);
-                        $("#opinionesContainer").html("<p>Error al cargar las opiniones.</p>");
-                    }
-                });
-            }
 
             // Cargar opiniones cuando la página se carga por primera vez
             loadOpinions();
@@ -149,7 +153,7 @@
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
-                        if(response.trim() === "success"){
+                        if (response.trim() === "success") {
                             // Cerrar el modal
                             var opinionModal = bootstrap.Modal.getInstance(document.getElementById('opinionModal'));
                             opinionModal.hide();
@@ -181,9 +185,11 @@
                 $.ajax({
                     url: '../pages/backend/Opiniones/OpinionDelete.php',
                     type: 'POST',
-                    data: {id: opinionId},
+                    data: {
+                        id: opinionId
+                    },
                     success: function(response) {
-                        if(response.trim() === "success"){
+                        if (response.trim() === "success") {
                             alert('Opinión eliminada exitosamente.');
                             loadOpinions(); // Recargar opiniones
                         } else {
@@ -199,4 +205,5 @@
         }
     </script>
 </body>
+
 </html>

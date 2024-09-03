@@ -685,8 +685,36 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
         function openRateModal(productId) {
             const rateModal = document.getElementById('rateModal');
             document.getElementById('rate-product-id').value = productId;
+            console.log("Product ID for rating:", productId); // Agrega esto para depurar
             rateModal.style.display = "block";
         }
+        document.getElementById('rate-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            console.log("Form data:", Array.from(formData.entries())); // Verifica los datos que se están enviando
+
+            fetch('../pages/backend/tienda/rate_product.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Verifica aquí lo que devuelve el servidor
+                    if (data.status === 'success') {
+                        alert('Valoración enviada exitosamente');
+                        document.getElementById('rateModal').style.display = "none";
+                        location.reload(); // Recargar para actualizar los datos
+                    } else {
+                        alert('Error al enviar la valoración: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.');
+                });
+        });
     </script>
 
 </body>
