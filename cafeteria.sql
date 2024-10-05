@@ -326,6 +326,7 @@ INSERT INTO `usuarios` (`ID_Usuarios`, `Usuario`, `Contrasena`, `Rol_ID`, `Rol`,
 (13, 'NicoLopez', '$2y$10$z7K6WTXWTi3Nf/XOWs1nSuQtFGkfE2gC9uqZqH.gyA701rlTyo5vK', 0, '', NULL, 'Nico.Lopez@gmail.com', NULL, NULL, 'Nicolas lopez', NULL, NULL),
 (14, 'Gabo', '$2y$10$Qn9IykiJPfNOPBQZj0KQau1bSb1qO2hIPzCZs2Y8WxZTl8oWMSb0e', 0, '', NULL, 'Gabo123@gmail.com', NULL, NULL, 'Gabriel Suazo', NULL, NULL),
 (15, 'TEST3', '$2y$10$TUvfVUdhDECWpcFEBg9RkuKUzMg41c8vc4OLCu5U/Wer9MAd32rfC', 0, '', NULL, 'TEST3@GMAIL.COM', NULL, NULL, 'TEST3', NULL, NULL);
+(16, 'Caja', '$2y$10$TUvfVUdhDECWpcFEBg9RkuKUzMg41c8vc4OLCu5U/Wer9MAd32rfC', 1, '', NULL, 'caja@gmail.com', NULL, NULL, 'caja', NULL, NULL);
 
 -- --------------------------------------------------------
 

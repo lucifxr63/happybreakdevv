@@ -162,11 +162,23 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .table_buttons{
 
+
+
+
+
+
+        }
         .dataTables_wrapper {
             position: relative;
+            text-align: center;
             clear: both;
-            margin-top: 256px;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 255px;
+
+
         }
     </style>
 </head>
