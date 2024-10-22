@@ -26,11 +26,13 @@ $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'guest'; /
     <!-- Verificar si el usuario es caja (rol_id 1 o 'caja') -->
     <?php if ($rol_id == 1 || $user_role == 'caja'): ?>
         <li><a href="Caja_pedidos.php">Caja</a></li>
+        <li><a href="ventas.php">Ventas</a></li>
     <?php endif; ?>
 
     <!-- Verificar si el usuario es mantenedor (rol_id 3 o 'mantenedor') -->
     <?php if ($rol_id == 3 || $user_role == 'mantenedor'): ?>
         <li><a href="administracion.php">Administración</a></li>
+        <li><a href="ventas.php">Ventas</a></li>
     <?php endif; ?>
 </ul>
 

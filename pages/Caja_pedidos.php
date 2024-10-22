@@ -28,6 +28,7 @@
                                     <button onclick="eliminarPedido(${pedido.ID_Pedido})">Eliminar</button>
                                     <button onclick="aprobarPedido(${pedido.ID_Pedido})">Aprobar</button>
                                     <button onclick="generarRecibo(${pedido.ID_Pedido}, '${pedido.producto_nombre}', '${pedido.producto_precio}', '${pedido.producto_cantidad}', '${pedido.Fecha_ingreso}', '${pedido.Total_A_Pagar}')">Generar Recibo</button>
+                                    <button onclick="entregarPedido(${pedido.ID_Pedido})">Entregar</button> <!-- Nuevo botón de Entregar -->
                                 </td>
                                 <td>${pedido.ID_Pedido}</td>
                                 <td>${pedido.producto_nombre}</td>
@@ -52,10 +53,34 @@
             });
         });
 
+        // Nueva función para manejar la entrega del pedido
+        function entregarPedido(id) {
+            if (confirm("¿Estás seguro de que deseas marcar el pedido " + id + " como entregado?")) {
+                $.ajax({
+                    url: './backend/Caja/entregar_pedido.php', // URL del archivo PHP que procesará la entrega
+                    method: 'POST',
+                    data: { id_pedido: id },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.status === "success") {
+                            alert("Pedido entregado exitosamente.");
+                            location.reload(); // Recargar la página para actualizar el estado del pedido
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                    },
+                    error: function (err) {
+                        alert("Error al entregar el pedido.");
+                        console.log(err);
+                    }
+                });
+            }
+        }
+
+        // Resto de funciones (editarPedido, eliminarPedido, aprobarPedido, etc.)
+
         function generarRecibo(id, nombre, precio, cantidad, fechaIngreso, totalPagar) {
-            // Mostrar el modal
             $('#reciboModal').show();
-            // Asignar los valores del pedido a los campos de sólo lectura
             $('#reciboProductoNombre').val(nombre);
             $('#reciboProductoPrecio').val(precio);
             $('#reciboProductoCantidad').val(cantidad);
@@ -79,7 +104,6 @@
 
         function eliminarPedido(id) {
             if (confirm("¿Estás seguro de que deseas eliminar el pedido " + id + "?")) {
-                // Lógica para eliminar el pedido
                 window.location.href = '../backend/eliminar_pedido.php?id=' + id;
             }
         }
@@ -94,7 +118,7 @@
                     success: function (response) {
                         if (response.status === "success") {
                             alert("Pedido aprobado exitosamente.");
-                            location.reload(); // Recargar la página para actualizar el estado del pedido
+                            location.reload();
                         } else {
                             alert("Error: " + response.message);
                         }
@@ -112,7 +136,6 @@
             dropdownMenu.classList.toggle("show");
         }
 
-        // Cerrar el menú desplegable si el usuario hace clic fuera de él
         window.onclick = function (event) {
             if (!event.target.matches('#user-icon')) {
                 var dropdowns = document.getElementsByClassName("dropdown-menu");
@@ -125,8 +148,8 @@
             }
         }
     </script>
+
     <style>
-        /* Estilos para el modal de edición */
         #editModal, #reciboModal {
             display: none;
             position: fixed;
@@ -136,7 +159,6 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
             padding-top: 60px;
         }
@@ -162,14 +184,7 @@
             text-decoration: none;
             cursor: pointer;
         }
-        .table_buttons{
 
-
-
-
-
-
-        }
         .dataTables_wrapper {
             position: relative;
             text-align: center;
@@ -177,8 +192,6 @@
             margin-left: 5%;
             margin-right: 5%;
             margin-top: 255px;
-
-
         }
     </style>
 </head>
@@ -210,7 +223,7 @@
             </div>
         </div>
         <div class="search-box">
-            <input type="search" name="" id="" placeholder="Buscar aqui...">
+            <input type="search" name="" id="" placeholder="Buscar aquí...">
         </div>
     </header>
 
