@@ -9,7 +9,7 @@
             <li><a href="politicas.php">Politicas y privacidad</a></li>
             <li><a href="atencion.php">Atencion al Cliente</a></li>
         </ul>
-        <p>&copy; 2023 Happy Break. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Happy Break. Todos los derechos reservados.</p>
     </div>
     <div class="footer-section contact-section">
     <h2>CONTACTO</h2>
@@ -22,13 +22,12 @@
     </div>
     <div class="footer-section about-section">
         <h2>Sobre la cafeteria:</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>"Donde los Breaks se vuelven memorias"</p>
         <div class="social-media">
             <a href="#"><i class="bx bxl-facebook"></i></a>
             <a href="#"><i class="bx bxl-twitter"></i></a>
             <a href="#"><i class="bx bxl-linkedin"></i></a>
-            <a href="#"><i class="bx bxl-instagram"></i></a>
-            <a href="#"><i class="bx bxl-youtube"></i></a> <!-- Red social adicional -->
+            <a href="https://www.instagram.com/happybreakcoffee/"><i class="bx bxl-instagram"></i></a>
         </div>
     </div>
 </div>

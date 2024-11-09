@@ -17,6 +17,21 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
     <script src="../assets/js/Static_Header_Footer.js"></script>
     <link rel="stylesheet" href="../assets/styles/_footer.css">
     <style>
+        
+
+        .product-title{
+            font-family: "Noto Serif", serif;
+            font-weight: 600;
+            font-size: 2rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2%;
+            padding: 2%;
+           
+        }
+
         .price {
             color: #fefefe;
         }
@@ -143,6 +158,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             transition: box-shadow .3s;
             padding: 10px;
             margin: 10px;
+            
             text-align: center;
         }
 
@@ -234,6 +250,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
                     <option value="Repostería">Repostería</option>
                     <option value="Tetería">Tetería</option>
                     <option value="Dulces">Dulces</option>
+                    <option value="Dulces">Almuerzos</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -258,24 +275,39 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             </div>
         </section>
 
+
+        <!-- Seccion con los productos alo sans porfa no se rian -->
         <section class="products" id="products">
-            <!-- Secciones de productos por categoría -->
+
+             <!--  Titulos de categorias de los productos -->
+            <h2 class="product-title">Café
+                /n asdasd
+            </h2>
+
             <div class="products-container" id="Café">
-                <h2>Café</h2>
-                <!-- Productos de Café -->
             </div>
+            
+            <h2 class="product-title">Repostería</h2>
+
             <div class="products-container" id="Repostería">
-                <h2>Repostería</h2>
-                <!-- Productos de Repostería -->
             </div>
+
+            <h2 class="product-title">Tetería</h2>
+
             <div class="products-container" id="Tetería">
-                <h2>Tetería</h2>
-                <!-- Productos de Tetería -->
             </div>
+
+            <h2 class="product-title">Almuerzos</h2>
+
+            <div class="products-container" id="Almuerzos">
+            </div>
+
+            <h2 class="product-title">Dulces</h2>
+
             <div class="products-container" id="Dulces">
-                <h2>Dulces</h2>
-                <!-- Productos de Dulces -->
             </div>
+
+            
         </section>
 
         <!-- Icono del carrito -->

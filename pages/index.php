@@ -9,10 +9,11 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sitio web Responsivo Caffe</title>
+    <title>Happy Break Coffee</title>
     <!-- link de estilos-->
     <link rel="stylesheet" href="../assets/styles/main.css">
     <link rel="stylesheet" href="../assets/styles/_footer.css">
+    <link rel="shortcut icon" href="../assets/images/caffeelogo.svg" type="image/x-icon"/>
     <script src="../assets/js/Static_Header_Footer.js"></script>
     <!-- link de iconos-->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -25,11 +26,8 @@ session_start();
         <section class="home">
             <div class="home-text">
                 <h1>Empieza tu dia <br> con un cafe!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-                <a href="#" class="btn">Compra ahora</a>
+                <p> Tu cafeteria de confianza </p>
+                <a href="tienda.php" class="btn">Compra Aqui ! </a>
             </div>
             <div class="home-img">
                 <img src="../assets/images/main.png" alt="">
@@ -39,13 +37,13 @@ session_start();
         <!-- Sobre nosotros -->
         <section class="about">
             <div class="about-img">
-                <img src="../assets/images/about.jpg" alt="">
+                <img src="../assets/images/Nosotros/Staff (1).JPG" alt="">
             </div>
             <div class="about-text">
                 <h2>Nosotros!</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
+                <p>Tu cafeteria de confianza!.</p>
+                <p>Tu cafeteria de confianza!.</p>
+                <p>Tu cafeteria de confianza!.</p>
                 <a href="#" class="btn">Saber mas..</a>
             </div>
         </section>
@@ -117,7 +115,7 @@ session_start();
             <div class="heading">
                 <h2>Nuestros Clientes:</h2>
             </div>
-            <!-- Container -->
+            <!-- MTW XDDDD Reviews usuarios -->
             <div class="customers-container">
                 <div class="box">
                     <div class="stars">
@@ -125,10 +123,11 @@ session_start();
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
                         <i class="bx bxs-star-half"></i>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-                    <h2>(Cliente 1)</h2>
+                    <p>¡Perfecto para empezar el día! Happy Break Coffee tiene el mejor café que he probado en la ciudad. El ambiente es tranquilo y acogedor, ideal para trabajar o relajarse. Además, el personal siempre tiene una sonrisa y sabe exactamente cómo prepararte el café perfecto. ¡Recomendadísimo!</p>
+                    <h2>Matias Muñoz</h2>
                     <img src="../assets/images/rev1.jpg" alt="">
                 </div>
                 <div class="box">
@@ -139,8 +138,8 @@ session_start();
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star-half"></i>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-                    <h2>(Cliente 2)</h2>
+                    <p>Muy rico el cafe y tambien como se tiran a mi mujer</p>
+                    <h2>Juan Garnizo</h2>
                     <img src="../assets/images/rev2.jpg" alt="">
                 </div>
                 <div class="box">
@@ -148,11 +147,12 @@ session_start();
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star"></i>
-                        <i class="bx bxs-star"></i>
-                        <i class="bx bxs-star-half"></i>
+                        <i class="bx bx-star"></i>
+                        <i class="bx bx-star"></i>
+                        
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-                    <h2>(Cliente 3)</h2>
+                    <p>Buen cafe!</p>
+                    <h2>Rosa Ramirez</h2>
                     <img src="../assets/images/rev3.jpg" alt="">
                 </div>
             </div>
