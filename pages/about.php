@@ -6,6 +6,17 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
+<style> 
+
+    .aboutus{
+        display: flex;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/styles/main.css">
@@ -23,15 +34,13 @@ session_start();
     </header>
     <section class="about" id="about">
         <div class="about-img">
-            <img src="../assets/images/about.jpg" alt="">
+            <img src="../assets/images/Cafe/staff.jpg" alt="">
         </div>
-        <div class ="about-text-header">
+        
+        <div class="about-text .aboutus">
             <h1>Nosotros!</h1>
-        </div>
-        <div class="about-text">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis aliquid accusantium.</p>
+            <div class="about-text"> de 5 años endulzando tus dias!</p>
+            </div>
             <a href="#" class="btn">Saber mas..</a>
         </div>
     </section>

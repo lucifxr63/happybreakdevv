@@ -281,7 +281,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
 
              <!--  Titulos de categorias de los productos -->
             <h2 class="product-title">Café
-                /n asdasd
+                
             </h2>
 
             <div class="products-container" id="Café">

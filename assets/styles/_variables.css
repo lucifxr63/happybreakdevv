@@ -622,6 +622,9 @@ main {
   display: block;
 }
 
+.footer-font-family {
+}
+
 .footer-line {
   width: 100%;
   height: 5px; /* Ajusta el grosor de la línea según tus preferencias */
