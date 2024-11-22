@@ -17,14 +17,14 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 <header>
-        <a href="./index.php" class="logo">
+        <a href="index.php" class="logo">
             <img src="../assets/images/logo.png" alt="">
         </a>
         <!-- Menu-Icon -->
         <i class="bx bx-menu" id="menu-icon"></i>
         <!-- Links -->
         <ul class="navbar">
-            <li><a href="./index.php">Inicio</a></li>
+            <li><a href="index.php">Inicio</a></li>
             <li><a href="about.php">Sobre Nosotros</a></li>
             <li><a href="tienda.php">Productos</a></li>
             <li><a href="customers.php">Opiniones</a></li>

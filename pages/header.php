@@ -5,14 +5,14 @@ session_start();
 $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener el rol del usuario desde la sesión o 0 por defecto
 $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'guest'; // Por defecto 'guest' si no está logueado
 ?>
-<a href="./index.php" class="logo">
+<a href="index.php" class="logo">
     <img src="../assets/images/logooriginal.png" alt="">
 </a>
 <!-- Menu-Icon -->
 <i class="bx bx-menu" id="menu-icon"></i>
 <!-- Links -->
 <ul class="navbar">
-    <li><a href="./index.php">Inicio</a></li>
+    <li><a href="index.php">Inicio</a></li>
     <li><a href="about.php">Sobre Nosotros</a></li>
     <li><a href="tienda.php">Productos</a></li>
     <li><a href="contacto.php">Contacto</a></li>

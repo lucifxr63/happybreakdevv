@@ -2,7 +2,7 @@
     <div class="footer-section logo-section">
         <h2>Happy<span>Break</span></h2>
         <ul>
-            <li><a href="./index.php">Inicio</a></li>
+            <li><a href="index.php">Inicio</a></li>
             <li><a href="about.php">Sobre nosotros</a></li>
             <li><a href="tienda.php">Productos</a></li>
             <li><a href="customers.php">Reseñas</a></li>
