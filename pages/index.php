@@ -40,11 +40,11 @@ session_start();
         <!-- Sobre nosotros -->
         <section class="about">
             <div class="about-img">
-                <img src="../assets/images/Nosotros/Staff (1).JPG" alt="">
+                <img class="imagen-index" src="../assets/images/Nosotros/Staff (1).JPG" alt="">
             </div>
             <div class="about-text">
                 <div class="about-tittle">Nosotros!</div>
-                <p>Donde los breaks se vuelven memoria!</p>
+                <p>En Happy Break Coffee, convertimos cada pausa en un momento especial. Disfruta de café de calidad, buen ambiente y calidez en cada visita. ¡Tu break más feliz está aquí! ☕</p>
                 <p>Mas de 5 años alegrando tu mañana.</p>
                 <a href="about.php" class="btn about-button">Saber mas..</a>
             </div>
@@ -78,7 +78,7 @@ session_start();
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star-half"></i>
                     </div>
-                    <p>Muy rico el cafe y tambien como se tiran a mi mujer</p>
+                    <p>Muy rico el cafe le encanto a mi mujer</p>
                     <h2>Juan Garnizo</h2>
                     <img src="../assets/images/rev2.jpg" alt="">
                 </div>
