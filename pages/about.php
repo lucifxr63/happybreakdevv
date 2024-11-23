@@ -34,7 +34,7 @@ session_start();
     </header>
     <section class="about-us-page" id="about">
         <div class="about-img">
-            <img src".." alt="">
+            <img src"../assets/" alt="">
         </div>
         
         <div class="about-text ">
