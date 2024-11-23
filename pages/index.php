@@ -33,7 +33,7 @@ session_start();
                 <a href="tienda.php" class="btn">Compra Aqui ! </a>
             </div>
             <div class="home-img">
-                <img src="../assets/images/main.png" alt="">
+                <img src="../assets/images/mainlogo.jpg" alt="">
             </div>
         </section>
 
@@ -52,7 +52,7 @@ session_start();
 
         <!-- Customers -->
         <section class="customers">
-            <div class="body">
+            <div class="clientes-index">
                 <h2>Nuestros Clientes:</h2>
             </div>
             <!-- MTW XDDDD Reviews usuarios -->

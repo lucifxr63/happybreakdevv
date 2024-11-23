@@ -32,12 +32,12 @@ session_start();
     <header>
 
     </header>
-    <section class="about" id="about">
+    <section class="about-us-page" id="about">
         <div class="about-img">
-            <img src="../assets/images/Cafe/staff.jpg" alt="">
+            <img src".." alt="">
         </div>
         
-        <div class="about-text .aboutus">
+        <div class="about-text ">
             <h1>Nosotros!</h1>
             <div class="about-text"> de 5 años endulzando tus dias!</p>
             </div>

@@ -16,8 +16,8 @@
         <ul>
             <li><i class="bx bx-map"></i> 282 Antonio Bellet , Providencia , Santiago de Chile
             </li>
-            <li><i class="bx bx-phone"></i> +1.555.555.5555 (numero por definir)</li>
-            <li><i class="bx bx-envelope"></i> support@happybreak.com (correo por definir)</li>
+            <li><i class="bx bx-phone"></i>+56 9 93490234</li>
+            <li><i class="bx bx-envelope"></i>happybreakcoffe@gmail.com</li>
         </ul>
     </div>
     <div class="footer-section about-section">
