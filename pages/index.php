@@ -17,6 +17,9 @@ session_start();
     <script src="../assets/js/Static_Header_Footer.js"></script>
     <!-- link de iconos-->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -40,79 +43,16 @@ session_start();
                 <img src="../assets/images/Nosotros/Staff (1).JPG" alt="">
             </div>
             <div class="about-text">
-                <h2>Nosotros!</h2>
-                <p>Tu cafeteria de confianza!.</p>
-                <p>Tu cafeteria de confianza!.</p>
-                <p>Tu cafeteria de confianza!.</p>
-                <a href="#" class="btn">Saber mas..</a>
-            </div>
-        </section>
-
-        <!-- productos -->
-        <section class="products">
-            <div class="heading">
-                <h2>Productos populares:</h2>
-            </div>
-            <!-- Container -->
-            <div class="products-container">
-                <div class="box">
-                    <img src="../assets/images/p1.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../assets/images/p2.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../assets/images/p3.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../assets/images/p4.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../assets/images/p5.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="../assets/images/p6.png" alt="">
-                    <h3>Americano Pure</h3>
-                    <div class="content">
-                        <span>$25</span>
-                        <a href="#">Agregar al carro</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Botón Ver más -->
-            <div class="view-more-container">
-                <a href="../pages/tienda.php" class="view-more-btn">Ver más</a>
+                <div class="about-tittle">Nosotros!</div>
+                <p>Donde los breaks se vuelven memoria!</p>
+                <p>Mas de 5 años alegrando tu mañana.</p>
+                <a href="about.php" class="btn about-button">Saber mas..</a>
             </div>
         </section>
 
         <!-- Customers -->
         <section class="customers">
-            <div class="heading">
+            <div class="body">
                 <h2>Nuestros Clientes:</h2>
             </div>
             <!-- MTW XDDDD Reviews usuarios -->

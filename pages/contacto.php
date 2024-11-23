@@ -21,14 +21,17 @@ session_start();
     </header>
 
     <main>
-        <section class="customer-service">
-            <h1>Atención al Cliente</h1>
-            <p>Bienvenido a la sección de Atención al Cliente de Happy Break Coffee. Nos esforzamos por brindar un servicio excepcional y estamos aquí para ayudarle con cualquier consulta o problema que pueda tener.</p>
-
+        <section class="customer-service-container">
+            <div class="customer-service">
+            <div class="customer-service-tittle">Atención al Cliente </div>
+            <div class="wrapped">Bienvenido a la sección de Atención al Cliente de Happy Break Coffee.
+                 Nos esforzamos por brindar un servicio excepcional y estamos aquí para ayudarle con cualquier consulta o problema que pueda tener.</div>
             <h2>Contacto</h2>
             <p>Para comunicarse con nuestro equipo de atención al cliente, puede utilizar el siguiente formulario:</p>
-
-            <form action="enviar_formulario.php" method="POST">
+            </div>
+             
+            <form class="customer-service-v" action="enviar_formulario.php" method="POST">
+                
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required><br><br>
 
