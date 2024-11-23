@@ -28,7 +28,7 @@ session_start();
         <!-- Home -->
         <section class="home">
             <div class="home-text">
-                <h1>Empieza tu dia <br> con un cafe!</h1>
+                <h1>Empieza tu dia con 100 picos <br> con un cafe!</h1>
                 <p> Tu cafeteria de confianza </p>
                 <a href="tienda.php" class="btn">Compra Aqui ! </a>
             </div>
