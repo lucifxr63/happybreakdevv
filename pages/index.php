@@ -66,7 +66,7 @@ session_start();
                         <i class="bx bxs-star"></i>
                         <i class="bx bxs-star-half"></i>
                     </div>
-                    <p>¡Perfecto para empezar el día! Happy Break Coffee tiene el mejor café que he probado en la ciudad. El ambiente es tranquilo y acogedor, ideal para trabajar o relajarse. Además, el personal siempre tiene una sonrisa y sabe exactamente cómo prepararte el café perfecto. ¡Recomendadísimo!</p>
+                    <p>Muy rico el cafe</p>
                     <h2>Matias Muñoz</h2>
                     <img src="../assets/images/rev1.jpg" alt="">
                 </div>
@@ -80,6 +80,19 @@ session_start();
                     </div>
                     <p>Muy rico el cafe le encanto a mi mujer</p>
                     <h2>Juan Garnizo</h2>
+                    <img src="../assets/images/rev2.jpg" alt="">
+                </div>
+                <div class="box">
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bx-star"></i>
+                        <i class="bx bx-star"></i>
+                        
+                    </div>
+                    <p>Buen cafe!</p>
+                    <h2>Rosa Ramirez</h2>
                     <img src="../assets/images/rev2.jpg" alt="">
                 </div>
                 <div class="box">

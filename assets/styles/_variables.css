@@ -1,4 +1,3 @@
-
 /* Fonts Para todos los sites aparentemente*/
 * {
   font-family: "Noto Sans", sans-serif;
@@ -24,18 +23,20 @@
 .home-text p {
   font-weight: 500;
 }
+
 /* Configuracion de los clientes Zona = Index*/
 #customers {
   padding: 50px 100px;
   margin-top: 110px;
 }
+
 /* Imagen de Sobre nosotros index Zona = Index*/
-.imagen-index{
+.imagen-index {
 
   max-width: 95%;
 }
 
-.clientes-index{
+.clientes-index {
   display: flex;
   justify-content: center;
   font-size: 1.25rem;
@@ -49,6 +50,7 @@
   gap: 1.5rem;
   margin-top: 0.5vh;
 }
+
 .about-img img {
   border-radius: 0.5rem;
 }
@@ -62,12 +64,13 @@
   display: flex;
   justify-content: center;
 }
-.about-tittle{
+
+.about-tittle {
   font-size: 50px;
   font-weight: 600;
 }
 
-.about-button{
+.about-button {
   display: flex;
   justify-content: center;
 }
@@ -85,24 +88,29 @@
 .shadow-drop-center {
   animation: shadow-drop-center 0.4s linear both;
 }
+
 @keyframes shadow-drop-center {
   0% {
     box-shadow: 0 0 0 0 transparent;
   }
+
   100% {
     box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.55);
   }
 }
+
 /* Padding de seccion */
 section {
   padding: 50px 100px;
 }
+
 section .products {
   padding: 5px 100px;
 }
+
 /* Propiedad de las imagenes */
 img {
-  width: 100%;
+  width: 85%;
 }
 
 body {
@@ -147,6 +155,7 @@ header {
   border-radius: 0.2rem;
   transition: 0.2s all linear;
 }
+
 /* Header */
 .header-icon {
   font-size: 22px;
@@ -180,6 +189,7 @@ header {
   background: var(--bg-color);
   width: 100%;
 }
+
 .search-box.active {
   top: 110%;
   box-shadow: var(--box-shadow);
@@ -235,6 +245,7 @@ header {
   color: var(--bg-color);
   font-weight: 500;
 }
+
 .btn:hover {
   background: #8a6f4d;
 }
@@ -302,26 +313,28 @@ header {
   transition: 0.2s all linear;
 }
 
-.customer-service-container{
+.customer-service-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
 }
 
-.wrapped{
+.wrapped {
   text-wrap: pretty;
   max-width: 60%;
 }
 
-.customer-service{
+.customer-service {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   text-wrap: pretty;
+
 }
 
-.customer-service-tittle{
+.customer-service-tittle {
   display: flex;
   font-size: 200%;
   font-weight: 600;
@@ -331,46 +344,67 @@ header {
   align-items: center;
   text-wrap: pretty;
 }
-.customer-service-v{
+
+.customer-service-v {
   margin: 4%;
   display: flex;
   align-items: center;
-  
+
 }
 
 .customers-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
 .customers-container .box {
-  padding: 20px;
+  max-width: 90%;
+  /* Limitar ancho */
+  min-width: 60%;
+  max-height: 400px;
+  /* Limitar alto */
+  height: 100%;
+  /* Asegurar que todas tengan la misma altura */
+  padding: 1.5rem;
   box-shadow: var(--box-shadow);
   border-radius: 0.5rem;
   text-align: center;
+  display: flex;
+  /* Hacer uso de flex para alinear contenido interno */
+  flex-direction: column;
+  justify-content: space-between;
+  /* Espaciado uniforme entre elementos */
 }
+
 .stars .bx {
   color: var(--main-color);
 }
-.customers-container .box p {
-  font-size: 0.938rem;
-}
-.customers-container .box h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0.5rem 0 0.5rem;
-}
+
+
+
 .customers-container .box img {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
+  margin: 0 auto;
 }
+
+.customers-container .box h2,
+.customers-container .box p {
+  word-wrap: break-word;
+  /* Manejar palabras largas */
+  margin: 0.5rem 0;
+}
+
 .customers-container .box:hover {
   background: var(--second-color);
   transition: 0.2s all linear;
+
 }
+
 .view-more-container {
   text-align: center;
   margin-top: 20px;
@@ -391,6 +425,7 @@ header {
 .view-more-btn:hover {
   background-color: #555;
 }
+
 /* Existing CSS */
 
 #user-icon {
@@ -400,7 +435,8 @@ header {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 40px; /* Adjust according to your header height */
+  top: 40px;
+  /* Adjust according to your header height */
   right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
@@ -427,7 +463,8 @@ header {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 40px; /* Ajusta según la altura de tu cabecera */
+  top: 40px;
+  /* Ajusta según la altura de tu cabecera */
   right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
@@ -455,7 +492,8 @@ header {
 }
 
 main {
-  padding-top: 90px; /* Ajustar según la altura de tu header */
+  padding-top: 90px;
+  /* Ajustar según la altura de tu header */
 }
 
 .filters {
@@ -496,7 +534,8 @@ main {
 
 .product-box img {
   width: 100%;
-  height: 60%; /* Adjust based on your design */
+  height: 60%;
+  /* Adjust based on your design */
   object-fit: cover;
 }
 
@@ -524,7 +563,8 @@ main {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 40px; /* Ajusta según la altura de tu cabecera */
+  top: 40px;
+  /* Ajusta según la altura de tu cabecera */
   right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
@@ -630,23 +670,28 @@ main {
   border-radius: 0.5rem;
   text-align: center;
 }
+
 .stars .bx {
   color: var(--main-color);
 }
+
 .customers-container .box p {
   font-size: 0.938rem;
 }
+
 .customers-container .box h2 {
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0.5rem 0 0.5rem;
 }
+
 .customers-container .box img {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
 }
+
 .customers-container .box:hover {
   background: var(--second-color);
   transition: 0.2s all linear;
@@ -676,6 +721,7 @@ main {
 .products {
   padding: 5px 100px;
 }
+
 .header-icon {
   position: relative;
   display: inline-block;
@@ -709,7 +755,8 @@ main {
 
 .footer-line {
   width: 100%;
-  height: 5px; /* Ajusta el grosor de la línea según tus preferencias */
+  height: 5px;
+  /* Ajusta el grosor de la línea según tus preferencias */
   background-color: black;
   position: fixed;
   bottom: 0;
