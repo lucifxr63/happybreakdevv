@@ -154,10 +154,10 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
         }
 
         .products-container .box {
-            border: 1px solid #ddd;
+            border: 0px solid #ddd;
             transition: box-shadow .3s;
-            padding: 10px;
-            margin: 10px;
+            padding: 5px;
+            margin: 5px;
             
             text-align: center;
         }
@@ -169,12 +169,12 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
         .products-container .box img {
             max-width: 100%;
             height: auto;
-
-            border-radius: 25px;
+            border-radius: 5%;
         }
 
         .products-container .box h3 {
             margin: 10px 0;
+            
         }
 
         .products-container .box .content span {
@@ -182,6 +182,8 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             margin-bottom: 10px;
             font-size: 18px;
             color: white !important;
+            max-width: 60%;
+            width: 50%;
         }
 
         .products-container .box .content button {
@@ -192,6 +194,9 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
             cursor: pointer;
             border-radius: 5px;
             margin-bottom: 2%;
+            max-width: 60%;
+            width: 50%;
+            
             ;
         }
 

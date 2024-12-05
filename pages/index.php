@@ -32,7 +32,7 @@ session_start();
                 <p> Tu cafeteria de confianza </p>
                 <a href="tienda.php" class="btn">Compra Aqui ! </a>
             </div>
-            <div class="home-img">
+            <div class="img img-home">
                 <img src="../assets/images/mainlogo.jpg" alt="">
             </div>
         </section>

@@ -36,6 +36,7 @@
 /* Imagen de Sobre nosotros index Zona = Index*/
 .imagen-index {
   max-width: 95%;
+
 }
 
 .clientes-index {
@@ -123,6 +124,15 @@ section .products {
 /* Propiedad de las imagenes */
 img {
   width: 85%;
+
+
+}
+
+.img-home img {
+  border-radius: 1.25%;
+  width: 85%;
+  max-height: 80vh;
+
 }
 
 body {
@@ -262,11 +272,13 @@ header {
   background: #8a6f4d;
 }
 
+
+/* --------------- Seccion de Productos ---------------*/
+
 .products-container {
   display: grid;
-
   grid-template-columns: repeat(auto-fit, minmax(280px, auto));
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-top: 2rem;
 }
 
@@ -283,9 +295,9 @@ header {
 .products-container img {
   width: 100%;
   height: 250px;
-  object-fit: contain;
+
   object-position: center;
-  padding: 10px;
+  padding: 5px;
   background: #f1f1f1;
   border-radius: 5px;
 }
@@ -301,6 +313,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border-radius: 20px;
 }
 
 .products-container .box .content span {
@@ -325,16 +338,20 @@ header {
   transition: 0.2s all linear;
 }
 
+
+/* ---------------------------------------------------------- */
+
+.wrapped {
+  text-wrap: pretty;
+  max-width: 60%;
+}
+
+
 .customer-service-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
 
-}
-
-.wrapped {
-  text-wrap: pretty;
-  max-width: 60%;
 }
 
 .customer-service {
@@ -416,6 +433,8 @@ header {
   transition: 0.2s all linear;
 
 }
+
+
 
 .view-more-container {
   text-align: center;
@@ -617,7 +636,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 5%;
   box-shadow: var(--box-shadow);
   background-color: var(--bg-color);
 }
@@ -630,6 +649,7 @@ main {
   background: #f1f1f1;
   border-radius: 0.5rem;
   margin-bottom: 15px;
+  box-shadow: none;
 }
 
 .products-container .box h3 {

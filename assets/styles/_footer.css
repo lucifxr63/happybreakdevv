@@ -34,10 +34,12 @@ main {
 
 .logo-section h2 {
   font-size: 24px;
+
 }
 
 .logo-section h2 span {
-  color: #8b4513; /* Color café para el logotipo */
+  color: #8b4513;
+  /* Color café para el logotipo */
 }
 
 .footer-section ul {
@@ -47,21 +49,25 @@ main {
 
 .footer-section ul li {
   margin: 10px 0;
+
   display: flex;
   align-items: center;
 }
 
 .footer-section ul li i {
   margin-right: 10px;
+
 }
 
 .footer-section ul li a {
   color: #fff;
   text-decoration: none;
+
 }
 
 .footer-section ul li a:hover {
-  color: #8b4513; /* Color café al pasar el cursor */
+  color: #8b4513;
+  /* Color café al pasar el cursor */
 }
 
 .footer-section p {
@@ -75,11 +81,14 @@ main {
 }
 
 .social-media a:hover {
-  color: #8b4513; /* Color café al pasar el cursor */
+  color: #8b4513;
+  /* Color café al pasar el cursor */
 }
+
 .profile {
   margin-top: 100px;
 }
+
 .info {
-  margin-top: 50px;
+  margin-top: 5%;
 }
