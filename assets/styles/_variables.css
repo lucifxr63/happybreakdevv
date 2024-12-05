@@ -369,6 +369,8 @@ header {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
 
 }
 
@@ -393,11 +395,22 @@ header {
 }
 
 .customer-service-v {
-  margin: 4%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-
+  justify-content: center;
+  text-align: center;
+  margin: 2.5% auto;
+  width: 80%;
+  max-width: 700px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
+
+
 
 .customers-container {
   display: grid;
@@ -642,7 +655,7 @@ main {
 
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
   padding: 0 10px;
@@ -657,6 +670,7 @@ main {
   border-radius: 5%;
   box-shadow: var(--box-shadow);
   background-color: var(--bg-color);
+  max-width: 400px;
 }
 
 .products-container img {
@@ -811,4 +825,21 @@ main {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+/* ---------------- Administracion Lista Usuarios ---------------- */
+
+.container-lista-usuarios {
+  margin: 10vh 5%;
+}
+
+.titulo-lista-usuarios {
+  font-family: "Noto Sans", sans-serif;
+  padding-top: 5%;
+  margin: 0% auto;
+  display: flex;
+  justify-content: center;
+  font-size: 4vh;
+  font-weight: 500;
+
 }

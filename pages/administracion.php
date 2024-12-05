@@ -20,8 +20,8 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
     <header>
     </header>
 
-    <div class="container" style="margin-top: 100px;">
-        <h2>Lista de Usuarios</h2>
+    <div class="container-lista-usuarios" style="margin-top: 100px;">
+        <div class="titulo-lista-usuarios">Lista de Usuarios</div>
         <table id="usuariosTable" class="display" style="width:100%">
             <thead>
                 <tr>

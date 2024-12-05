@@ -238,6 +238,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
         }
         #addProductButton {
     display: none; /* Inicialmente oculto */
+    margin: 0 auto;
     padding: 10px 20px;
     background-color: #28a745; /* Color verde */
     color: #fff;
@@ -248,6 +249,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
     transition: all 0.3s ease; /* Transición suave */
+    
 }
 
 /* Efecto hover */
