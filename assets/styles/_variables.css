@@ -88,13 +88,31 @@
 
 }
 
+/* ---------- About Us Page ----------  */
 
 .about-us-page {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
+  grid-template-columns: repeat(auto-fit, minmax(28rem, auto));
   gap: 1.5rem;
-  margin-top: 42.5vh;
+  margin-top: 14.5vh;
 }
+
+.about-page-image img {
+  max-width: 100%;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.5%;
+}
+
+.about-page-text p {
+  font-size: 1.7rem;
+  margin: 0.5rem 0 1.1rem;
+  max-width: 92%;
+}
+
+
 
 
 /* Animacion creo al seleccionar producto */

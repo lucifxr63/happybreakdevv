@@ -21,7 +21,7 @@ $rol_id = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 0; // Obtener
 
         .product-title{
             font-family: "Noto Serif", serif;
-            font-weight: 600;
+            font-weight: 800;
             font-size: 2rem;
             text-align: center;
             display: flex;

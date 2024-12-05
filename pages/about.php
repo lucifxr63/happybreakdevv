@@ -33,15 +33,15 @@ session_start();
 
     </header>
     <section class="about-us-page" id="about">
-        <div class="about-img">
-            <img src"../assets/" alt="">
+        <div class="about-page-image">
+            <img src="..\assets\images\Nosotros\Staffgod.jpg" alt="">
         </div>
         
         <div class="about-text ">
             <h1>Nosotros!</h1>
-            <div class="about-text"> de 5 años endulzando tus dias!</p>
+            <div class="about-page-text"> <p> En Happy Break Coffee, convertimos cada pausa en un momento especial. Disfruta de café de calidad, buen ambiente y calidez en cada visita. ¡Tu break más feliz está aquí! ☕</p>
             </div>
-            <a href="#" class="btn">Saber mas..</a>
+            <a href="#" class="btn about-button">Saber mas..</a>
         </div>
     </section>
     <footer class="footer"></footer>
