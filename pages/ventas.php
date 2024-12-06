@@ -58,9 +58,10 @@ $conn->close();
         <!-- Aquí iría el contenido del header -->
     </header>
 
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 8%; margin-bottom: 20%; max-width: 95%;">
         <h1>Boleta - Ventas Entregadas</h1>
-        <table id="ventasTable" class="display" style="width:100%">
+     
+        <table id="ventasTable" class="display" style="width:90%">
             <thead>
                 <tr>
                     <th>ID Pedido</th>
@@ -84,6 +85,7 @@ $conn->close();
                 <?php endforeach; ?>
             </tbody>
         </table>
+        
         <p>Generado el <?php echo date('Y-m-d H:i:s'); ?></p>
     </div>
 
